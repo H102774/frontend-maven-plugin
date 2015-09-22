@@ -19,7 +19,14 @@ public final class FrontendPluginFactory {
                 new DefaultArchiveExtractor(),
                 new DefaultFileDownloader(proxy));
     }
-    
+
+    public NodeAndNPMInstaller getAuthenticatingNodeAndNPMInstaller(String username, String password){
+        return new DefaultNodeAndNPMInstaller(
+                getInstallConfig(),
+                new DefaultArchiveExtractor(),
+                new AuthenticatingFileDownloader(username, password));
+    }
+
     public BowerRunner getBowerRunner() {
         return new DefaultBowerRunner(getExecutorConfig());
     }    
@@ -60,3 +67,4 @@ public final class FrontendPluginFactory {
         return new DefaultInstallConfig(installDirectory, workingDirectory, defaultPlatform);
     }
 }
+
