@@ -10,10 +10,16 @@ import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.settings.Server;
+import org.apache.maven.settings.Settings;
 import org.apache.maven.settings.crypto.SettingsDecrypter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Mojo(name = "install-node-and-npm", defaultPhase = LifecyclePhase.GENERATE_RESOURCES)
 public final class InstallNodeAndNpmMojo extends AbstractFrontendMojo {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(InstallNodeAndNpmMojo.class);
 
 	/**
 	 * Where to download Node.js binary from. Defaults to http://nodejs.org/dist/
@@ -36,8 +42,8 @@ public final class InstallNodeAndNpmMojo extends AbstractFrontendMojo {
 	@Deprecated
 	private String downloadRoot;
 
-	@Parameter(property = "useBasicAuthentication", required = false, defaultValue = "false")
-	private Boolean useBasicAuthentication;
+	@Parameter(property = "nodeServer", required = false, defaultValue = "")
+	private String nodeServer;
 
 	@Parameter(property = "username", required = false, defaultValue = "")
 	private String username;
@@ -82,11 +88,23 @@ public final class InstallNodeAndNpmMojo extends AbstractFrontendMojo {
 
 	@Override
 	public void execute(FrontendPluginFactory factory) throws InstallationException {
+
 		ProxyConfig proxyConfig = MojoUtils.getProxyConfig(session, decrypter);
 		String nodeDownloadRoot = getNodeDownloadRoot();
 		String npmDownloadRoot = getNpmDownloadRoot();
 
-		if (useBasicAuthentication) {
+		if ((username == null || username.length() == 0) && (nodeServer != null && nodeServer.length() > 0)) {
+			Server server = session.getSettings().getServer(nodeServer);
+			if (server != null) {
+				username = server.getUsername();
+				password = server.getPassword();
+			}
+		}
+
+		LOGGER.info("nodeServer=" + nodeServer);
+		LOGGER.info("username=" + username);
+
+		if (username != null && username.length() > 0) {
 			factory.getAuthenticatingNodeAndNPMInstaller(username, password).install(nodeVersion, npmVersion, nodeDownloadRoot, npmDownloadRoot);
 		} else {
 			factory.getNodeAndNPMInstaller(proxyConfig).install(nodeVersion, npmVersion, nodeDownloadRoot, npmDownloadRoot);
