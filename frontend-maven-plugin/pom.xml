@@ -10,7 +10,7 @@
     <artifactId>frontend-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
 
-    <name>Maven Frontend Plugin</name>
+    <name>Frontend Maven Plugin</name>
     <prerequisites>
         <maven>3.1.0</maven>
     </prerequisites>
@@ -79,6 +79,7 @@
             </plugin>
 
             <!-- For the integration test -->
+<!--
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>mrm-maven-plugin</artifactId>
@@ -124,6 +125,7 @@
                     </execution>
                 </executions>
             </plugin>
+-->
         </plugins>
     </build>
 
