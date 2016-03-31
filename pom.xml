@@ -26,7 +26,7 @@
         run Grunt tasks, and/or run Karma tests.
     </description>
 
-    <url>https://github.com/eirslett/frontend-maven-plugin</url>
+    <url>https://github.com/ServiceNow/frontend-maven-plugin</url>
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -36,16 +36,16 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/eirslett/frontend-maven-plugin</url>
-        <connection>scm:git:https://github.com/eirslett/frontend-maven-plugin.git</connection>
-        <developerConnection>scm:git:git@github.com:eirslett/frontend-maven-plugin.git</developerConnection>
+        <url>https://github.com/ServiceNow/frontend-maven-plugin</url>
+        <connection>scm:git:https://github.com/ServiceNow/frontend-maven-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:ServiceNow/frontend-maven-plugin.git</developerConnection>
     </scm>
 
     <developers>
         <developer>
-            <id>eirslett</id>
-            <name>Eirik Sletteberg</name>
-            <email>eiriksletteberg@gmail.com</email>
+            <id>derek.washington</id>
+            <name>Derek Washington</name>
+            <email>derek.washington@servicenow.com</email>
         </developer>
     </developers>
 
