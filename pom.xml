@@ -11,7 +11,7 @@
 
     <groupId>com.github.eirslett</groupId>
     <artifactId>frontend-plugins</artifactId>
-    <version>0.0.27-snc1</version>
+    <version>0.0.27-snc1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -38,8 +38,8 @@
     <scm>
         <url>https://github.com/ServiceNow/frontend-maven-plugin</url>
         <connection>scm:git:https://github.com/ServiceNow/frontend-maven-plugin.git</connection>
-        <developerConnection>scm:git:https://github.com/ServiceNow/frontend-maven-plugin.git</developerConnection>
-        <tag>frontend-plugins-0.0.27-snc1</tag>
+        <developerConnection>scm:git:git@github.com:ServiceNow/frontend-maven-plugin.git</developerConnection>
+        <tag>master</tag>
     </scm>
 
     <developers>
